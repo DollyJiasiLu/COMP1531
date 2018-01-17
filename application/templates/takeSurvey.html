@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='../static/login.css?16.3'>
+    <title>Survey</title>
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-default">
+      <a class="navbar-brand nav-list" href="/login">CeebsSurvey</a>
+
+
+</nav>
+
+<div id='page' class='jumbotron'>
+	<h1>{{survey.getName()}}</h1>
+		</p>
+	<hr>
+  <br><br>
+  <form method="post" id="mainForm" style="padding-left: 10px;">
+
+      {% for q in qList%}
+        {%if not q.getisMandatory()%}            <!--show an optional tag for this question-->
+<span class="badge badge-secondary">Optional</span>
+          {% endif %}
+  	   <b>Question {{(loop.index)|string()}}:</b>
+       <br>
+       <p>{{q.getName()}}</p>
+       {%if q.getType()|string != 't'%}
+        {%if q.getisMandatory() == 1%}
+           {% for a in q.getAnswers() %}
+             <input type="radio" name="{{q.getID()}}" value="{{a[0]}}" required>{{a[1]}}<br>
+           {%endfor%}
+        {%else%}
+           {% for a in q.getAnswers() %}
+             <input type="radio" name="{{q.getID()}}" value="{{a[0]}}">{{a[1]}}<br>
+           {%endfor%}
+        {%endif%}
+       {%else%}
+        {%if q.getisMandatory() == 1%}
+          <textarea name="{{q.getID()}}" style="width:500px;height:200px;font-size:12pt;" form="mainForm" required></textarea><br>
+        {%else%}
+          <textarea name="{{q.getID()}}" style="width:500px;height:200px;font-size:12pt;" form="mainForm"></textarea><br>
+        {%endif%}
+       {%endif%}
+      {%endfor%}
+  	<button type="submit" class="btn btn-primary" name="survey" value="{{survey.getID()}}">Submit survey</button>
+    <br><hr>
+  </form>
+
+
+<br>
+<hr>
+<br>
+
+</div>
+</body>
+	<script type="text/javascript" src='../static/jquery.js?1.1'></script>
+	<script type="text/javascript" src='../static/login.js?1.0'></script>
+</html>

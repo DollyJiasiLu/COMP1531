@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='../static/login.css?16.2'>
+  <script type="text/javascript" src='../static/jquery.js?1.1'></script>
+  <script type="text/javascript" src='../static/login.js?0.211'></script>
+    <title>Login</title>
+
+</head>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand nav-list" href="/">CeebsSurvey</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li id="inactive" class="nav-list"><a href="/">Home</a></li>
+        <li id="inactive" class="nav-list"><a href="/questions">Questions</a></li>
+        <li id="inactive" class="nav-list"><a href="/createMCQ">Create MCQ Questions</a></li>
+        <li id="inactive" class="nav-list"><a href="/createTextQuestion">Create Text Questions</a></li>
+        <li class="nav-list"><a href="/surveys">Surveys</a></li>
+        <li><a href="/createSurvey" class="nav-list">Create Survey</a></li>
+      </ul>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="nav-list"><a href="/login">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id='page' class='jumbotron'>
+	<h1>Create Questions</h1>
+		</p>
+	<hr>
+  <form id='form' method="post">
+  	<div class="form-group"> <!-- Question field !-->
+  		<label for="question_id" class="control-label">Question</label>
+  		<input type="text" class="form-control" id="question_id" name="question" placeholder="Enter question here" pattern=".{1,200}" oninvalid="alert('Must contain 1-200 characters');">
+  	</div>
+    <ol id="answers" style="margin-left: 5px;" type='a' class="hiddenOnLoad">
+      <li id="l0" class="answerList"><input type="text" name="a0" placeholder="Answer" class="answerBox" pattern=".{1,100}" oninvalid="alert('Must contain 1-100 characters');">
+          <button type="button" class="deleteAnswer btn btn-primary" onclick="return deleteAnswer(this);" value="0">Delete Answer</button></li>
+      <li id="l1" class="answerList"><input type="text" name="a1" placeholder="Answer" class="answerBox" pattern=".{1,100}" oninvalid="alert('Must contain 1-100 characters');">
+          <button type="button" class="deleteAnswer btn btn-primary" onclick="return deleteAnswer(this);" value="1">Delete Answer</button></li>
+    </ol>
+    <button type="button" class="btn btn-primary" onclick="addAnswer()" class="hiddenOnLoad">Add option</button>
+    <br>
+    <p>
+    <div class="form-group"> <!-- Submit button !-->
+  		<button type="submit" class="btn btn-primary">Submit</button>
+  	</div>
+  </p>
+  </form>
+
+
+<br>
+<hr><br>
+
+</div>
+</body>
+</html>
+
+
+
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ -->

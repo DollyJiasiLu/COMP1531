@@ -1,0 +1,167 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+	font-size: 80px;
+	text-align: center;
+
+}
+/*.alert {*/
+   /*width:13%;*/
+/*max-height: 100%}*/
+/*.alert-warning{*/
+		/*background-color: #e4c61f;*/
+/*}*/
+.badge-secondary{
+	background-color: #ff6771;
+}
+.badge-approval{
+	background-color: #ffcf5d;
+	color: #994600;
+
+}
+.badge-approved{
+	background-color: #50AD14;
+
+}
+.navbar {
+	margin: 0px 0px 0px 0px;
+	background-color: #8BEFBD;
+	color: #000000;
+}
+
+#nav-list {
+	color: #000000;
+}
+
+#active {
+	background-color: #6AC195;
+}
+#body {
+	background-color: #FFFFFF;
+}
+
+#title-left {
+
+	display: inline-block;
+	width: 49%;
+	margin: 0px 0px 0px 0px;
+}
+
+#title-right {
+	display: inline-block;
+	width: 49%;
+	margin: 0px 0px 0px 0px;
+}
+
+#page {
+	background-color: #FFFFFF;
+	margin: 0px 0px 0px 0px;
+	padding-bottom: 180%;
+}
+
+#form-login {
+	margin-left: 35%;
+	padding-top: 10%;
+	padding-bottom: 10%;
+}
+
+#form {
+	margin-left: 10%;
+	padding-top: 5%;
+	padding-bottom: 10%;
+}
+
+.form-head {
+	position: relative;
+	padding-left: 20%;
+}
+
+input {
+	display: inline-block;
+	height: 40px;
+	width: 200px;
+	font-size: 20px;
+	/*padding: 5px 0px 5px 0px;*/
+}
+
+.form-control {
+	width: 300px;
+}
+
+#submit {
+	border:none;
+	width:120px;
+	height: 45px;
+	border-radius: 8px;
+	background-color: #337AB7;
+}
+
+/*.question {
+	width:20px;
+}*/
+
+#submit:hover {
+	box-shadow: 0px 0px 2px 2px #191919;
+}
+
+#user {
+	display: inline-block;
+	float:right;
+}
+
+#paragraph {
+	width: 26%;
+	border: 3px solid #3E6BE4;
+	margin-left: 37%;
+}
+
+.nav {
+	display: inline-block;
+}
+
+.tab {
+	display: inline-block;
+}
+
+.status-creation {
+	background-color: #FFAA88;
+	color: #DC2C06;
+	display: inline;
+}
+
+.status-approval {
+	color: #994600;
+	background-color: #FFCC66;
+	display: inline;
+}
+
+.status-open {
+	color: #FFFFFF;
+	background-color: #50AD14;
+	display: inline;
+}
+/*.qTitle {
+	float: left;
+	width: inherit;
+}*/
+
+#courseInput {
+	width: 200px;
+}
+
+.time {
+	width: 275px;
+}
+
+#addCourse {
+	width: 25px;
+	height: 25px;
+}
+
+.deleteCourse {
+	width: 30px;
+	height: 30px;
+}

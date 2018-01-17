@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='../static/login.css?1.71'>
+    <title>Survey</title>
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand nav-list" href="/">CeebsSurvey</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li id="inactive" class="nav-list"><a href="/">Home</a></li>
+        <li id="inactive" class="nav-list"><a href="/questions">Questions</a></li>
+        <li id="inactive" class="nav-list"><a href="/createMCQuestion">Create MCQ Questions</a></li>
+        <li id="inactive" class="nav-list"><a href="/createTextQuestion">Create Text Questions</a></li>
+        <li class="nav-list"><a href="/surveys">Surveys</a></li>
+        <li><a href="/createSurvey" class="nav-list">Create Survey</a></li>
+      </ul>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="nav-list"><a href="/login">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id='page' class='jumbotron'>
+	<h1>Survey Results</h1>
+		</p>
+
+	<hr>
+  <br><br>
+  <form method="post">
+  	<label for="question_id" class="control-label"></label>
+      {% for s in sDict %}
+      {%if sDict[s].getStatus() <= 3%}
+  	   <p>Name: <a href="http://localhost:8004/results/{{s}}">{{sDict[s].getName()}}</a></p>
+       {%if sDict[s].getStatus() == 3%}
+          <h5 class="status-creation" width="20px" height="10px"> Closed </h5>
+       {%elif sDict[s].getStatus() == 1%}
+          <h5 class="status-approval" width="20px" height="10px"> Waiting approval </h5>
+        {%elif sDict[s].getStatus() == 2%}
+          <h5 class="status-open" width="20px" height="10px"> Active Survey </h5>
+       {%endif%}
+       <p>Courses: </p>
+       <span>{% for course in sDict[s].getCourses() %} {{cDict[course].getName()}} {{cDict[course].getSem()}}, {% endfor %}</span><br><br>
+
+     {%if sDict[s].getStatus() == 3 and (sDict[s].getOpen() == None or sDict[s].getOpen() < now) %}
+        <button type="submit" class="btn btn-primary" name="delete" value="{{sDict[s].getID()}}">Delete survey</button>
+     {%endif%}
+
+    <br><hr>
+    {%endif%}
+    {% endfor %}
+  </form>
+
+
+<br>
+<hr>
+
+</div>
+</body>
+	<script type="text/javascript" src='../static/jquery.js?1.1'></script>
+	<script type="text/javascript" src='../static/login.js?1.0'></script>
+</html>
+
+
+
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ -->

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='../static/login.css?16.2'>
+    <title>Survey</title>
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand nav-list" href="#">CeebsSurvey</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li class="nav-list"><a href="/">Home</a></li>
+        <li id="active" class="nav-list"><a href="#">Review</a></li>
+      </ul>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="nav-list"><a href="/login">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id='page' class='jumbotron'>
+	<h1>{{survey.getName()}}</h1>
+		</p>
+	<hr>
+  <br><br>
+  <form method="post" style="margin-left: 10px">
+
+      {% for q in survey.getQuestions()%}
+        {%if not qDict[q].getisMandatory()%}
+<span class="badge badge-secondary">Optional</span>
+          {% endif %}
+  	   <b>Question {{(loop.index)|string()}}:</b>
+       <br>
+       <p>{{qDict[q].getName()}}</p>
+       <ol type="a" style="margin-left:30px">
+       {%if qDict[q].getType() == 'm'%}
+       {% for a in qDict[q].getAnswers() %}
+          <li>{{a[1]}}</li>
+       {%endfor%}
+       {%else%}
+       <textarea name="{{qDict[q].getID()}}" style="width:500px;height:200px;font-size:12pt;" disabled></textarea>
+       {%endif%}
+       </ol>
+      {%endfor%}
+
+    <br>
+    	<button type="submit" class="btn btn-primary" name="question" value="1">Create optional question</button>
+
+  	<button type="submit" class="btn btn-primary" name="review" value="1">Approve</button>
+    <button type="submit" class="btn btn-danger" name="reject" value="0">Appeal Survey</button>
+
+    <br><hr>
+  </form>
+
+
+<br>
+<hr>
+<br>
+
+</div>
+<div id='page' class='jumbotron'>
+
+
+
+<br>
+<hr><br>
+
+</div>
+</body>
+	<script type="text/javascript" src='../static/jquery.js?1.1'></script>
+	<script type="text/javascript" src='../static/login.js?1.0'></script>
+</html>
+
+
+
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ -->

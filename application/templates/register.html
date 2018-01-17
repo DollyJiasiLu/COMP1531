@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel='stylesheet' href='../static/login.css?1.096'>
+  <script type="text/javascript">
+    var courses = [{%for c in courses%} "{{c.getName()}} {{c.getSem()}}", {%endfor%} 0];
+    var IDs = [{%for c in courses%} {{c.getID()}},{%endfor%} 0];
+    console.log("IDs: " + IDs);
+    courses.pop();
+    IDs.pop();
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src='../static/jquery.js?1.1'></script>
+  <script type="text/javascript" src='../static/login.js?6.3'></script>
+    <title>Create Survey</title>
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand nav-list" href="/">CeebsSurvey</a>
+    </div>
+  </div>
+</nav>
+
+<div id='page' class='jumbotron'>
+  <h1>Create Survey</h1>
+    </p>
+  <hr>
+
+  <form method="post" id="form" onsubmit="return checkPass()"/>
+  <div class = "form-head">
+    <p>Please Enter Your Email:</p>
+    {% if incorrect == 'true' %}
+    <input type="email" class="form-control error" id="username" name="name" placeholder="Email" required style="border-color:red;"><br>
+    {%if incorrect == 'true' %}
+    <p style="color:red">
+      That email is already registered
+    </p>
+    {% endif %}
+    {%else%}
+    <input type="email" pattern=".{5,50}" class="form-control" id="username" name="name" placeholder="Email" required oninvalid="alert('Must contain 5-50 characters');"><br>
+    {%endif%}
+    <p>Please enter a password:</p>
+    <input type="password" class="form-control" id="password1" name="pass" placeholder="Password" required pattern=".{6,25}" oninvalid="alert('Must contain 6-25 characters');"><br>
+    <p>Re-enter password:</p>
+    <input type="password" class="form-control" id="password2" name="pass" placeholder="Password" required onchange="verifyPass()" pattern=".{6,25}" oninvalid="alert('Must contain 6-25 characters');"><br>
+    <p>Enter Courses you would like to register for:</p>
+    <input type="text" name="courses" placeholder="Enter a course" id="courseInput" list="courses" required>
+    <datalist id="courses" width="60">
+      {%for c in courses%}
+        <option value="{{c.getName()}} {{c.getSem()}}">
+      {%endfor%}
+    </datalist>
+    <input id="addCourse" type="button" onclick="return add_course();" value="+"></input><br>
+    <span id="selected-courses"></span><input type="button" onclick="eraseCourse()" style="display: none;" class="deleteCourse">
+    <input type="hidden" name="course-IDs" value="-1" id="course-IDs">
+    <br><br>
+      <button type="submit" class="btn btn-primary" style="width:400px;margin-left:-30px;">Register</button>
+  </div>
+
+  </form>
+
+
+<br>
+<hr><br>
+
+</div>
+</body>
+
+</html>
+
+
+
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ -->

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script type="text/javascript">
+    var courses = [{%for c in cList%} "{{c.getName()}} {{c.getSem()}}", {%endfor%} 0];
+    var IDs = [{%for c in cList%} {{c.getID()}},{%endfor%} 0];
+    console.log("IDs: " + IDs);
+    //var selectedCourses = [{%for c in courses%} {{c.getID()}}, {%endfor%} 0];
+    //selectedCourses.pop();
+    courses.pop();
+    IDs.pop();
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel='stylesheet' href='../static/login.css?16.2'>
+  <script type="text/javascript" src='../static/jquery.js?1.1'></script>
+  <script type="text/javascript" src='../static/login.js?5.095'></script>
+    <title>Create Survey</title>
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand nav-list" href="/">CeebsSurvey</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li id="inactive" class="nav-list"><a href="/">Home</a></li>
+        <li id="inactive" class="nav-list"><a href="/questions">Questions</a></li>
+        <li id="inactive" class="nav-list"><a href="/createMCQuestion">Create MCQ Questions</a></li>
+        <li id="inactive" class="nav-list"><a href="/createTextQuestion">Create Text Questions</a></li>
+        <li class="nav-list"><a href="/surveys">Surveys</a></li>
+        <li><a href="/createSurvey" class="nav-list">Create Survey</a></li>
+      </ul>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="nav-list"><a href="/login">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id='page' class='jumbotron'>
+  <h1>Create Survey</h1>
+    </p>
+  <hr>
+  <form method="post" id="form" onsubmit="return checkForm()"/>
+    <input type="text" class="form-control" id="surveyName" name="name" placeholder="Survey name" value="{{survey.getName()}}" required pattern=".{1,100}" oninvalid="alert('Must contain 6-25 characters');">
+
+    <input type="text" name="courses" placeholder="Enter a course" id="courseInput" list="courseList" required>
+    <datalist id="courseList">
+      {%for c in cList%}
+        <option value="{{c.getName()}} {{c.getSem()}}">
+      {%endfor%}
+    </datalist>
+    <input id="addCourse" type="button" onclick="return add_course();" value="+"></input><br>
+    <span id="selected-courses"></span><input type="button" onclick="eraseCourse()" style="display: none;" id="deleteCourse">
+    <input type="hidden" name="course-IDs" value="-1" id="course-IDs">
+
+    <br>
+    <label for="question_id" class="control-label">Questions</label>
+    <ul>
+      {% for q in qList %}
+      <li><input type="checkbox" class="question" name="question" value="{{q.getID()}}" id="q{{q.getID()}}">
+        {{q.getName()}}
+        <ol id="answers" style="">
+            {% for ans in q.getAnswers() %}
+            <li>{{ans[1]}}</li>
+            {%endfor%}
+        </ol>
+        <br><hr>
+      </li>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Create Survey</button>
+    </ul>
+  </form>
+
+
+<br>
+<hr><br>
+
+</div>
+</body>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    {%for c in courses%}
+    $('#courseInput').val("{{c.getName()}} {{c.getSem()}}");
+    add_course();
+    {%endfor%}
+    $('#courseInput').val("");
+
+    chosenQs = [{%for q in survey.getQuestions()%} {{q}}, {%endfor%} 0];
+    chosenQs.pop();
+    for (var i = 0; i < chosenQs.length; i++) {
+        $('#q'+chosenQs[i]).attr('checked','true');
+    }
+
+  });
+
+</script>
+</html>
+
+
+
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ -->

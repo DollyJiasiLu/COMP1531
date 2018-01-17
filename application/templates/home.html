@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel='stylesheet' href='../static/login.css?18.3'>
+
+    <title>Login</title>
+
+</head>
+
+<nav id='nav'>
+	<span id='nav-title'>Login</span>
+		<ul id='navbar'>
+			<li class='tab' id='first-tab'><a href="/">option 1</a></li>
+			<li class="tab"><a href="login">Login</a></li>
+			<li class="tab">option 3</li>
+		</ul>
+
+	<span id='user' class='tab'>
+		Name: <span id='dispName'> - </span>
+		Email: <span id='email'> - <span>
+		Preferred Colour: <span id='colour'> - </span>
+	</span>
+</nav>
+<body>
+<div id='page'>
+	<h1>User Login</h1>
+		</p>
+	<hr>
+    <form id='form' method="post">
+        <input type='text' placeholder='Username' required='true' autofocus="true" id='username' name='username'>
+        <input type="password" placeholder='Password' required='true' id='password' name='password'>
+        <button type="submit" id='submit'>Submit</button>
+
+        {% for item in navigation %}
+        <input type="checkbox" name="{item.caption}">
+        <a href="{{ item.href }}">{{ item.caption }}</a><br>
+    	{% endfor %}
+
+    </form>
+
+
+<br>
+<hr><br>
+    <div>
+    	{% if True %}
+        	yay
+    	{% endif %}
+	</div>
+
+    {{ a_variable }}
+
+    {# a comment #}
+
+
+</div>
+</body>
+	<script type="text/javascript" src='../static/jquery.js?1.1'></script>
+	<script type="text/javascript" src='../static/login.js?2.1'></script>
+</html>
+
+
+
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ -->
